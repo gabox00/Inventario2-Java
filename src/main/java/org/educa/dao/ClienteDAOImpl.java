@@ -64,33 +64,4 @@ public class ClienteDAOImpl implements ClienteDAO {
         }
         return null;
     }
-
-    @Override
-    public ClienteEntity getClienteBy(String dni) throws SQLException {
-        String sql = "SELECT * FROM cliente WHERE dni = ?";
-
-        try (Connection connection = ConnectionPool.getDataSource().getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, dni);
-
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return new ClienteEntity(
-                    rs.getInt("id"),
-                    rs.getString("dni"),
-                    rs.getString("nombre"),
-                    rs.getString("primer_apellido"),
-                    rs.getString("segundo_apellido"),
-                    rs.getString("email"),
-                    rs.getString("pass"),
-                    rs.getString("usu_cre"),
-                    rs.getTimestamp("fec_cre"),
-                    rs.getString("usu_mod"),
-                    rs.getTimestamp("fec_mod")
-                );
-            }
-        }
-        return null;
-    }
 }

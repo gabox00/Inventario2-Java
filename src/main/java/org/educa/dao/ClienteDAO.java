@@ -6,5 +6,4 @@ import java.sql.SQLException;
 
 public interface ClienteDAO {
     ClienteEntity login(String dni, String password) throws SQLException;
-    ClienteEntity getClienteBy(String dni) throws SQLException;
 }
